@@ -8,7 +8,7 @@ import time
 # Dictionary to hold HSV color ranges for different colors
 color_ranges = {
     "red": {
-        "lower": np.array([0, 100, 100]),
+        "lower": np.array([0, 100, 100]),j
         "upper": np.array([10, 255, 255])
     },
     "orange": {
