@@ -8,7 +8,7 @@ import time
 # Dictionary to hold HSV color ranges for different colors
 color_ranges = {
     "red": {
-        "lower": np.array([0, 100, 100]),j
+        "lower": np.array([0, 100, 100]),
         "upper": np.array([10, 255, 255])
     },
     "orange": {
@@ -34,9 +34,40 @@ color_ranges = {
     "violet": {
         "lower": np.array([140, 100, 100]),
         "upper": np.array([160, 255, 255])
+    },
+    "cyan": {
+        "lower": np.array([80, 100, 100]),
+        "upper": np.array([100, 255, 255])
+    },
+    "magenta": {
+        "lower": np.array([160, 100, 100]),
+        "upper": np.array([180, 255, 255])
+    },
+    "pink": {
+        "lower": np.array([160, 100, 100]),
+        "upper": np.array([180, 255, 255])
+    },
+    "purple": {
+        "lower": np.array([140, 100, 100]),
+        "upper": np.array([160, 255, 255])
+    },
+    "brown": {
+        "lower": np.array([0, 100, 100]),
+        "upper": np.array([20, 255, 255])
+    },
+    "white": {
+        "lower": np.array([0, 0, 200]),
+        "upper": np.array([255, 30, 255])
+    },
+    "black": {
+        "lower": np.array([0, 0, 0]),
+        "upper": np.array([255, 255, 30])
+    },
+    "gray": {
+        "lower": np.array([0, 0, 100]),
+        "upper": np.array([255, 30, 200])
     }
 }
-
 # Function to apply color detection and masking
 def apply_color_mask(frame, color):
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -69,8 +100,8 @@ while (capture_video.isOpened()):
     # Flipping the current frame (background + moving object)
     img = np.flip(img, axis=1)
     
-    # Applying color detection and masking for red color
-    mask = apply_color_mask(img, "green")
+    # Applying color detection and masking for the color
+    mask = apply_color_mask(img, "cyan")
 
     # Applying morphological operations on the mask for better accuracy
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8), iterations=2)
@@ -87,6 +118,7 @@ while (capture_video.isOpened()):
 
     # Displaying the result
     cv2.imshow("Invisibility Cloak", output)
+  
     
     # Exiting when 'Esc' key is pressed
     if cv2.waitKey(1) & 0xff == 27:
